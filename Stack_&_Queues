@@ -190,3 +190,39 @@ class myQueue:
     def size(self):
         # Return current size
         return len(self.l1)
+
+6. Valid Parentheses
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        st = []
+        for ele in s:
+            if ele == '(' or ele == '[' or ele == '{':
+                print("this is if block !")
+                st.append(ele)
+            else:
+                print("this is else block !!")
+                if len(st) <= 0:
+                    return False
+                if st and st[-1] == '(' and ele != ')':
+                    return False
+                elif st and st[-1] == '(' and ele == ')':
+                    st.pop()
+                    continue
+                
+                if st and st[-1] == '[' and ele != ']':
+                    return False
+                elif st and st[-1] == '[' and ele == ']':
+                    st.pop()
+                    continue
+                
+                if st and st[-1] == '{' and ele != '}':
+                    return False
+                elif st and st[-1] == '{' and ele == '}':
+                    st.pop()
+                    continue
+                
+        if len(st)>0:
+            return False
+        return True
+
