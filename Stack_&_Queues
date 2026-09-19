@@ -226,3 +226,33 @@ class Solution:
             return False
         return True
 
+7. Next Greater Element I
+
+class Solution:
+    def nextGreaterElement(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        n = len(nums2)
+        ans = [-1]*len(nums1)
+        i = n-1
+        st = list()
+        while i >=0:
+            ele = nums2[i]
+            if len(st)==0:
+                st.append(ele)
+            else:
+                if st[-1] > ele:
+                    if ele in nums1:
+                        ans[nums1.index(ele)] = st[-1]
+                    st.append(nums2[i])
+                else:
+                    while st and st[-1] < ele:
+                        st.pop()
+                    
+                    if len(st)==0:
+                        st.append(ele)
+                    else:
+                        if ele in nums1:
+                            ans[nums1.index(ele)] = st[-1]
+                        
+                        st.append(nums2[i])
+            i = i -1
+        return ans
