@@ -256,3 +256,36 @@ class Solution:
                         st.append(nums2[i])
             i = i -1
         return ans
+
+8. Next Greater Element II
+
+class Solution:
+    def nextGreaterElements(self, nums: list[int]) -> list[int]:
+        n = len(nums)
+        ans = [-1]*n
+        i = 2*n-1
+        st = list()
+
+        while i >=0:
+            ele = nums[i%n]
+            if len(st)==0:
+                st.append(ele)
+            else:
+                if st[-1] > ele:
+                    if i < n:
+                        ans[i] = st[-1]
+                    st.append(ele)
+        
+                else:
+                    while st and st[-1] <= ele:
+                        st.pop()
+                    
+                    if len(st)==0:
+                        st.append(ele)
+                    else:
+                        if i < n:
+                            ans[i] = st[-1]
+                        st.append(ele)
+            i = i -1
+        return ans
+
